@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kristel Rayco · lavender portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+
+    /* ---------- LAVENDER GRADIENT BACKGROUND ---------- */
+    body {
+      background: linear-gradient(-45deg, #e6d7ff, #d9c9ff, #cfbdf5, #e0d0ff, #e9dcff, #dac8ff);
+      background-size: 400% 400%;
+      animation: gradientShift 18s ease infinite;
+      color: #1e1a2b; /* deep purple‑gray for contrast */
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 0 1rem 2rem;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 0%; }
+      25% { background-position: 50% 50%; }
+      50% { background-position: 100% 100%; }
+      75% { background-position: 50% 50%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    /* ----- FLOATING NAV (lavender accents) ----- */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 2rem;
+      background: rgba(255, 240, 255, 0.4);
+      backdrop-filter: blur(18px) saturate(200%);
+      -webkit-backdrop-filter: blur(18px) saturate(200%);
+      border: 1px solid rgba(170, 130, 240, 0.3);
+      border-radius: 3rem;
+      box-shadow: 0 18px 35px -12px #2e1a47, 0 0 0 1px rgba(190, 140, 255, 0.2) inset;
+      max-width: 1300px;
+      margin: 1.2rem auto 2rem auto;
+      position: sticky;
+      top: 16px;
+      z-index: 999;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #2e1b50;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2.5rem;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      background: rgba(210, 180, 255, 0.5);
+      border-color: rgba(150, 100, 230, 0.7);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 18px -10px #543c7a;
+      color: #1a102f;
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        flex-direction: column;
+        gap: 0.7rem;
+        padding: 0.9rem 1.2rem;
+        border-radius: 2.5rem;
+      }
+      nav ul {
+        justify-content: center;
+        width: 100%;
+      }
+      nav a {
+        padding: 0.4rem 1rem;
+        font-size: 0.95rem;
+      }
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* ----- HERO with 2x2 picture on the left (lavender style) ----- */
+    .hero {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 2rem 2rem 2.5rem;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      background: rgba(255, 245, 255, 0.2);
+      border-radius: 4rem;
+      backdrop-filter: blur(10px);
+      margin: 2rem 0 2.5rem;
+      border: 1px solid rgba(180, 140, 250, 0.35);
+      animation: fadeSlideUp 0.8s ease-out;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 0 0 auto;
+    }
+
+    .profile-img {
+      width: 190px;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 24px;
+      border: 5px solid #dcc5ff;
+      box-shadow: 0 20px 30px -8px #352b50, 0 0 0 2px rgba(255, 240, 255, 0.6) inset;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s;
+      animation: floatEntrance 1s ease-out, floatSoft 5s infinite 1s;
+      background: #dac0ff; /* fallback */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #4a2e7a;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 28px 35px -8px #6d4b9e, 0 0 0 5px rgba(210, 170, 255, 0.8);
+      border-color: #eed5ff;
+    }
+
+    @keyframes floatEntrance {
+      0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes floatSoft {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
+    }
+
+    .hero-right {
+      flex: 1 1 300px;
+    }
+
+    .hero-right h2 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #3a286b, #5b3d8c, #7a5bb5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+      animation: fadeIn 1s ease;
+      margin-bottom: 0.25rem;
+    }
+
+    .typing {
+      font-size: 1.6rem;
+      border-right: 3px solid #8a6bcb;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      max-width: fit-content;
+      animation: typing 4s steps(40, end) forwards, blink .8s step-end infinite, fadeIn 1.4s;
+      background: linear-gradient(145deg, #412d70, #3e2670);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 500;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    /* ---------- SECTIONS + CARDS (lavender accent) ---------- */
+    .section {
+      display: block;
+      padding: 1rem 0 2rem;
+      animation: fadeSlideUp 0.7s ease-out backwards;
+    }
+
+    #personal { animation-delay: 0.1s; }
+    #objective { animation-delay: 0.2s; }
+    #skills { animation-delay: 0.3s; }
+    #projects { animation-delay: 0.4s; }
+    #certificates { animation-delay: 0.5s; }
+    #contact { animation-delay: 0.6s; }
+
+    @keyframes fadeSlideUp {
+      0% { opacity: 0; transform: translateY(24px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    .card {
+      background: rgba(255, 245, 255, 0.3);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(160, 120, 240, 0.35);
+      border-radius: 2.5rem;
+      padding: 2.5rem 2.8rem;
+      box-shadow: 0 30px 45px -20px #37285a, 0 0 0 1px rgba(180, 130, 255, 0.25) inset;
+      transition: transform 0.3s ease, box-shadow 0.4s ease;
+      margin-bottom: 2.5rem;
+      color: #1e1035;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 40px 50px -18px #7457b3;
+      border-color: rgba(170, 120, 250, 0.7);
+    }
+
+    .card h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      border-left: 7px solid #ac8ee6;
+      padding-left: 1.5rem;
+      background: linear-gradient(to right, #2e1b55, #4a2f7a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* skills as pills */
+    .skills span {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      margin: 0.5rem 0.8rem 0.5rem 0;
+      border: 1.5px solid rgba(140, 100, 230, 0.7);
+      border-radius: 40px;
+      background: rgba(255, 235, 255, 0.25);
+      backdrop-filter: blur(5px);
+      font-weight: 600;
+      color: #2a174b;
+      transition: all 0.25s ease;
+    }
+
+    .skills span:hover {
+      background: #cbb1ff;
+      border-color: #7a4fc0;
+      transform: scale(1.08) translateY(-4px);
+      box-shadow: 0 10px 18px -6px #624a97;
+      color: #0f0923;
+    }
+
+    .project {
+      background: rgba(255, 240, 255, 0.3);
+      padding: 1.3rem 1.8rem;
+      margin: 1rem 0;
+      border-radius: 2rem;
+      border-left: 10px solid #9c7ed6;
+      font-size: 1.3rem;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+      color: #281f42;
+      font-weight: 500;
+    }
+
+    .project:hover {
+      background: #dac0ff;
+      border-left-color: #efb6c0; /* soft rose for contrast, still lavender‑friendly */
+      color: #1b1130;
+      transform: translateX(12px) scale(1.01);
+      box-shadow: 0 15px 20px -10px #5a4291;
+    }
+
+    /* certificates grid – lavender theme */
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .cert-item {
+      background: rgba(255, 240, 255, 0.3);
+      backdrop-filter: blur(6px);
+      border-radius: 2rem;
+      padding: 2rem 1rem;
+      text-align: center;
+      border: 1px solid rgba(160, 120, 240, 0.5);
+      transition: all 0.3s ease;
+      box-shadow: 0 18px 25px -12px #4c3585;
+    }
+
+    .cert-item:hover {
+      transform: scale(1.03) translateY(-8px);
+      border-color: #edc3ff;
+      background: rgba(220, 190, 255, 0.5);
+      box-shadow: 0 30px 30px -10px #6c4fb0;
+    }
+
+    .cert-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .cert-item:hover .cert-icon {
+      transform: rotate(5deg) scale(1.1);
+    }
+
+    .cert-item h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #2e1a56;
+    }
+    .cert-item p {
+      color: #352759;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    /* contact info */
+    .contact-info p {
+      font-size: 1.4rem;
+      margin: 1.2rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: transform 0.2s;
+      border-radius: 2rem;
+      padding: 0.5rem 1rem;
+      color: #2d1d4a;
+      font-weight: 500;
+    }
+    .contact-info p:hover {
+      transform: translateX(8px);
+      background: rgba(200, 170, 255, 0.4);
+    }
+
+    /* footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 240, 255, 0.25);
+      backdrop-filter: blur(12px);
+      border-radius: 60px;
+      margin: 3rem 0 1rem;
+      border: 1px solid rgba(150, 100, 210, 0.3);
+      font-weight: 500;
+      animation: fadeIn 1.5s;
+      color: #1d1138;
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      .hero { justify-content: center; text-align: center; }
+      .hero-right h2 { font-size: 2.4rem; }
+      .typing { font-size: 1.2rem; white-space: normal; border-right: none; width: 100%; animation: none; }
+      .card { padding: 2rem 1.5rem; }
+      .certificates-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .profile-img { width: 160px; height: 160px; }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- LAVENDER FLOATING NAV -->
+  <nav>
+    <ul>
+      <li><a href="#personal">Personal</a></li>
+      <li><a href="#objective">Objective</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO: 2x2 picture left, name & typing right (lavender vibe) -->
+  <section class="hero">
+    <div class="hero-left">
+      <!-- 2x2 picture (square, 190px) with fallback icon -->
+      <img src="kristel.png" class="profile-img" alt="Kristel Rayco" 
+           onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22><rect width=%22200%22 height=%22200%22 fill=%22d9c0ff%22 /><text x=%2250%25%22 y=%2255%25%22 font-size=%2280%22 text-anchor=%22middle%22 fill=%223b256b%22>👩</text><text x=%2250%25%22 y=%2270%25%22 font-size=%2230%22 text-anchor=%22middle%22 fill=%222d1952%22>2x2</text></svg>'">
+    </div>
+    <div class="hero-right">
+      <h2>Kristel Rayco</h2>
+      <p class="typing">
+        Future Software Developer | Mobile & Web Creator
+      </p>
+    </div>
+  </section>
+
+  <!-- PERSONAL -->
+  <section id="personal" class="section">
+    <div class="card">
+      <h2> Personal Information</h2>
+      <p style="font-size:1.4rem; margin:1.2rem 0;">Name: Kristel Rayco</p>
+      <p style="font-size:1.4rem;">Course: BS Information Technology · 3rd Year</p>
+    </div>
+  </section>
+
+  <!-- OBJECTIVE -->
+  <section id="objective" class="section">
+    <div class="card">
+      <h2> Career Objective</h2>
+      <p style="font-size:1.6rem; font-weight:300;">To become a successful Software Developer and create innovative mobile and web applications that solve real problems.</p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="card">
+      <h2> Skills</h2>
+      <div class="skills">
+        <span>HTML5</span>
+        <span>CSS3</span>
+        <span>JavaScript</span>     
+        <span>MySQL</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="card">
+      <h2> Projects</h2>
+      <div class="project">MCC Instructor Attendance Monitoring System</div>
+      <div class="project">Research Paper of IoT Flat-Iron Vending Machine</div>
+      <div class="project">Personal Portfolio</div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES SECTION (lavender) -->
+  <section id="certificates" class="section">
+    <div class="card">
+      <h2> Certificates</h2>
+      <div class="certificates-grid">
+        <div class="cert-item">
+          <span class="cert-icon"></span>
+          <h3>Ethical Hacker</h3>
+          <p>Cisco Networking Academy</p>
+        </div>
+        <div class="cert-item">
+          <span class="cert-icon"></span>
+          <h3>Introduction to Cybersecurity</h3>
+          <p>Cisco Networking Academy</p>
+        </div>
+        <div class="cert-item">
+          <span class="cert-icon"></span>
+          <h3>Networking Basics</h3>
+          <p>Cisco Networking Academy</p>
+        </div>
+        <!-- (extra placeholder removed) -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="card">
+      <h2> Contact</h2>
+      <div class="contact-info">
+        <p> raycokristel@gmail.com</p>
+        <p> +63 991 318 4845</p>
+        <p> Santa Fe, Philippines</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 · Kristel Rayco · Portfolio · All rights reserved.
+  </footer>
+
+</div>
+
+<!-- smooth scroll -->
+<script>
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
